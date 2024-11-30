@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Pribadi Zulfikar</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #00FFFF, #0000FF);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            min-height: 100vh;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        @keyframes gradientBG {
+            0% {background-position: 0% 50%;}
+            50% {background-position: 100% 50%;}
+            100% {background-position: 0% 50%;}
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .nav {
+            display: flex;
+            justify-content: center;
+            background-color: rgba(255,255,255,0.2);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        .nav button {
+            background: none;
+            border: none;
+            padding: 10px 15px;
+            margin: 0 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            color: white;
+        }
+        .nav button.active {
+            background-color: rgba(255,255,255,0.3);
+            border-radius: 10px;
+        }
+        .content {
+            background-color: rgba(255,255,255,0.2);
+            border-radius: 15px;
+            padding: 30px;
+            min-height: 500px;
+        }
+        .home-content {
+            text-align: center;
+            padding: 50px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .welcome-text {
+            position: relative;
+            display: inline-block;
+        }
+        .welcome-text span {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.5s ease forwards;
+        }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .welcome-text span:nth-child(1) { animation-delay: 0.1s; }
+        .welcome-text span:nth-child(2) { animation-delay: 0.3s; }
+        .welcome-text span:nth-child(3) { animation-delay: 0.5s; }
+
+        .gradient-text {
+            background: linear-gradient(45deg, #FF6B00, #FFDE00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+            background-size: 200% auto;
+            animation: shine 3s linear infinite, fadeIn 1s ease-in-out both;
+        }
+
+        @keyframes shine {
+            to {
+                background-position: 200% center;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .nav button {
+            background: none;
+            border: none;
+            padding: 10px 15px;
+            margin: 0 10px;
+            cursor: pointer;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .nav button::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #FF6B00, #FFDE00);
+            z-index: -1;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .nav button:hover::before {
+            transform: scaleX(1);
+        }
+
+        .nav button.active {
+            animation: fadeOut 0.3s ease forwards;
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            color: white;
+        }
+        .about-image img {
+            max-width: 300px;
+            border-radius: 50%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .project-card {
+            background-color: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            color: white;
+        }
+        .project-card:hover {
+            transform: scale(1.05);
+        }
+        .project-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .contact-form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 5px;
+            background-color: rgba(255,255,255,0.1);
+            color: white;
+        }
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: rgba(255,255,255,0.7);
+        }
+        .contact-form button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(45deg, #FF4D4D, #800000);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .contact-form button:hover {
+            transform: scale(1.05);
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(255,255,255,0.2);
+            margin-top: 20px;
+        }
+        @media (max-width: 768px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            .projects {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="nav" id="navigation">
+            <button onclick="showSection('home')" class="active">🏠 Beranda</button>
+            <button onclick="showSection('about')">👤 Tentang</button>
+            <button onclick="showSection('projects')">💼 Proyek</button>
+            <button onclick="showSection('contact')">✉️ Kontak</button>
+        </nav>
+
+        
+    <div class="content" id="content">
+        <div class="home-content">
+            <h1 class="welcome-text" style="font-size: 2.5rem; margin-bottom: 15px;">
+                <span>H</span>
+                <span>a</span>
+                <span>i</span>
+                <span>, </span>
+                <span>S</span>
+                <span>a</span>
+                <span>y</span>
+                <span>a </span>
+                <span class="gradient-text">Zulfikar </span>
+            </h1>
+            <p style="font-size: 1.2rem;">Setiap detik yang kamu habiskan dengan menunda-nunda adalah sebuah lubang yang kamu gali sendiri menuju kegagalan. Waktu tidak akan pernah kembali, setiap menit yang Anda buang adalah potongan masa depan Anda yang hilang untuk selamanya. Kamu bukan korban keadaan, kamu adalah pencipta nasibmu sendiri. Kemalasan adalah pembunuh mimpi paling kejam yang akan memakan habis potensi dirimu. Setiap kali kamu memilih untuk menunda, kamu sebenarnya sedang memilih untuk gagal.</p>
+        </div>
+    
+        </div>
+
+        <footer class="footer">
+            <div>
+                <a href="https://wa.me/0895384547109" style="margin-right: 15px; color: white; text-decoration: none;">WhatsApp</a>
+                <a href="https://www.instagram.com/kyoichiro_san?igsh=MW43bm4yMzc3aTVobw==" style="color: white; text-decoration: none;">Instagram</a>
+            </div>
+            <p style="color: white; margin-top: 10px;">© 2024 Dibuat oleh Zulfikar Aziz Saripudin. Hak Cipta Dilindungi.</p>
+        </footer>
+    </div>
+
+    <script>
+        const sections = {
+            home: {
+                title: 'Selamat Datang',
+                content: `
+                    <div class="home-content">
+                        <h1 class="welcome-text" style="font-size: 2.5rem; margin-bottom: 15px;">
+                            <span>H</span>
+                            <span>a</span>
+                            <span>i</span>
+                            <span>, </span>
+                            <span>S</span>
+                            <span>a</span>
+                            <span>y</span>
+                            <span>a </span>
+                            <span class="gradient-text">Zulfikar</span>
+                        </h1>
+                        <p style="font-size: 1.2rem;">Kamu bukan korban keadaan, kamu adalah pencipta nasibmu sendiri. Kemalasan adalah pembunuh mimpi paling kejam yang akan memakan habis potensi dirimu. Setiap kali kamu memilih untuk menunda, kamu sebenarnya sedang memilih untuk gagal.</p>
+                    </div>
+                `
+            },
+            about: {
+                title: 'Tentang Saya',
+                content: `
+                    <div class="about-content">
+                        <div class="about-image">
+                            <img src="z.jpg" alt="Profil">
+                        </div>
+                        <div>
+                            <h2 style="margin-bottom: 15px;" class="gradient-text">Perjalanan hidup Saya</h2>
+                            <p style="margin-bottom: 15px;">
+                                Nama saya Zulfikar Aziz Saripudin, saya adalah seorang pemuda berusia 16 tahun yang lahir dan dibesarkan di Bekasi, dengan semangat tak terbendung untuk terus belajar dan mengembangkan diri. Mengawali pendidikan di SDN Jakasetia 2 Bekasi Selatan, saya kemudian melanjutkan pendidikan menengah pertama di MTs Hidayatullah Bekasi Selatan, dan kini sedang menempuh pendidikan di SMK Binakarya Mandiri 2 Bekasi Timur.
+Meskipun masih tergolong muda, saya memiliki passion yang mendalam untuk dunia teknologi. Saat ini, saya tengah menjalani perjalanan otodidak yang menantang dalam mempelajari dunia pemrograman dan bahasa Jepang. Bukan sekadar hobi, tetapi sebuah komitmen untuk mempersiapkan diri menghadapi masa depan yang penuh tantangan.
+Keyakinan saya bahwa pendidikan tidak hanya terbatas pada ruang kelas mendorong saya untuk terus belajar di luar sistem pendidikan formal. Dengan semangat muda dan rasa ingin tahu yang tinggi, saya percaya bahwa setiap tantangan adalah kesempatan untuk tumbuh dan berkembang.
+Perjalanan saya baru dimulai, dan masa depan adalah kanvas yang siap saya lukis dengan warna-warni prestasi dan pencapaian.
+                            </p>
+                            <div>
+                                <p>🖥️ <strong>Keahlian:</strong> HTML, CSS< JS ( masih dalam tahap belajar untuk menjadi programer full stack )</p>
+                                <p>🌍 <strong>Bahasa:</strong> Indonesia (umum), jepang ( N5 )</p>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            projects: {
+                title: 'Proyek Saya',
+                content: `
+                    <div class="projects">
+                        ${[
+                            { name: 'OtodidakBahasaJepang', tech: 'Dalam perjalanan belajar bahasa Jepang, saya tidak hanya berfokus pada penguasaan bahasa itu sendiri, tetapi juga memiliki misi mulia untuk membagikan setiap butir pengetahuan yang saya dapatkan. Meskipun masih dalam tahap belajar dan mengakui keterbatasan pengetahuan, saya percaya bahwa berbagi adalah cara terbaik untuk belajar. Saya sadar bahwa perjalanan ini baru dimulai. Setiap video, postingan, atau materi yang saya buat adalah potret dari proses belajar saya sendiri. Bukan untuk menunjukkan kesempurnaan, melainkan untuk menunjukkan bahwa belajar adalah perjalanan yang berkelanjutan. Motto saya sederhana: "Apa yang saya tahu, akan saya bagikan. Bukan untuk terlihat hebat, tetapi untuk menginspirasi." ', image: 'j.png' },
+                            { name: 'Trader crypto dan Investor pasar modal', tech: 'Di tengah gelombang digital dan aksesibilitas informasi yang semakin terbuka, saya adalah salah satu generasi muda yang memilih jalur tidak biasa. Sementara teman sebaya masih berkutat dengan tugas sekolah dan aktivitas remaja pada umumnya, saya sudah melangkah ke dunia investasi dan trading pasar modal. Usia 16 tahun bukan penghalang, melainkan modal awal untuk membangun literasi keuangan yang komprehensif. Setiap detik di depan layar adalah momen belajar, setiap transaksi adalah pengalaman, dan setiap kerugian adalah pelajaran berharga. Saya tidak sekadar membaca teori investasi di buku pelajaran, tetapi langsung merasakan dinamika pasar yang sesungguhnya. Bukan tentang berapa banyak uang yang saya hasilkan, melainkan tentang bagaimana saya membangun fondasi pemahaman finansial sejak dini. Saya sadar bahwa di usia 16 tahun, saya sedang menanam benih investasi terpenting - investasi pengetahuan dan pengalaman.Inilah perjalanan saya - seorang pelajar SMK yang memilih untuk tidak sekadar mendengar teori, tetapi langsung merasakan praktik sesungguhnya dalam dunia investasi.', image: 'cc.jpg' },
+                            { name: 'Otodidak Programing', tech: 'Di tengah arus pendidikan formal yang konvensional, saya adalah salah satu generasi muda yang memilih jalur berbeda. Sebagai seorang pelajar SMK, saya tidak puas hanya dengan kurikulum yang tersedia. Saya memilih untuk membuka pintu dunia programming melalui jalur otodidak, memulai perjalanan dari titik yang paling dasar. Setiap baris kode adalah sebuah kisah. Bukan sekadar deretan perintah komputer, melainkan ekspresi logika, kreativitas, dan ketekunan. Saya memulai dari tahap paling awal - memahami konsep dasar, belajar bahasa pemrograman, dan mencoba memecahkan puzzle digital sedikit demi sedikit. Proses belajar saya tidak mudah. Setiap error adalah guru, setiap debugging adalah pertempuran intelektual. Saya belajar dari tutorial online, forum diskusi, video YouTube, dan berbagai sumber daring yang tersedia. Tidak ada instruktur langsung, hanya semangat dan keinginan untuk terus maju. Inilah kisah saya - seorang pelajar SMK yang memilih untuk tidak sekadar menunggu, tetapi langsung bertindak. Membangun keahlian programming dari nol, dengan keyakinan bahwa passion dan kerja keras adalah kunci sejati kesuksesan.', image: 'p.png' }
+                        ].map(project => `
+                            <div class="project-card">
+                                <img src="${project.image}" alt="${project.name}">
+                                <div style="padding: 15px;">
+                                    <h3 class="gradient-text">${project.name}</h3>
+                                    <p>${project.tech}</p>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `
+            },
+            contact: {
+                title: 'Hubungi Zulfikar',
+                content: `
+                    <div class="contact-form">
+                        <form id="contactForm">
+                            <input type="text" name="name" placeholder="Nama Anda" required>
+                            <input type="email" name="email" placeholder="Email Anda" required>
+                            <textarea name="message" placeholder="Pesan Anda" required rows="5"></textarea>
+                            <button type="submit">Kirim Pesan</button>
+                        </form>
+                    </div>
+                `
+            }
+        };
+
+        function showSection(sectionName) {
+            // Update active button
+            const buttons = document.querySelectorAll('.nav button');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+
+            // Load section content
+            const contentArea = document.getElementById('content');
+            const section = sections[sectionName];
+            contentArea.innerHTML = `
+                <h2 style="text-align: center; margin-bottom: 30px;" class="gradient-text">${section.title}</h2>
+                ${section.content}
+            `;
+
+            // Reattach event listener for contact form if on contact section
+            if (sectionName === 'contact') {
+                document.getElementById('contactForm').addEventListener('submit', handleSubmit);
+            }
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const message = formData.get('message');
+
+            // Membuat tautan mailto dengan data formulir
+            const mailtoLink = `mailto:yamakreator@gmail.com?subject=Pesan dari ${name}&body=Nama: ${name}%0AEmail: ${email}%0A%0APesan:%0A${message}`;
+            
+            // Membuka klien email default
+            window.location.href = mailtoLink;
+
+            // Reset formulir
+            event.target.reset();
+        }
+
+        // Load home section by default
+        showSection('home');
+    </script>
+</body>
+</html>
